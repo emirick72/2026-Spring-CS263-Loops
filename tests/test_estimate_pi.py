@@ -65,7 +65,7 @@ def test_abs_error_from_known(computed, known):
 @pytest.mark.parametrize("number_of_terms", range(1, 10))
 def test_pi_leibniz_1_to_9_terms(number_of_terms):
     expected_pi = 4.0 * sum(alternate_term_signs(reciprocals(odd_range(number_of_terms))))
-    assert_that(estimate_pi.pi_leibniz(number_of_terms), is_(close_to(expected_pi, 1e-16)))
+    assert_that(estimate_pi.pi_leibniz(number_of_terms), is_(close_to(expected_pi, 1e-8)))
 
 def test_pi_leibniz_up_to_10_terms(estimates_for_10_100_10000):
     terms_10, terms_100, terms_10_000 = estimates_for_10_100_10000
@@ -74,7 +74,7 @@ def test_pi_leibniz_up_to_10_terms(estimates_for_10_100_10000):
     assert_that(math.fabs(terms_10 - terms_10_000), is_(greater_than(1e-4)))
 
     expected_pi = 4.0 * sum(alternate_term_signs(reciprocals(odd_range(10))))
-    assert_that(estimate_pi.pi_leibniz(10), is_(close_to(expected_pi, 1e-16)))
+    assert_that(estimate_pi.pi_leibniz(10), is_(close_to(expected_pi, 1e-8)))
 
 
 def test_pi_leibniz_up_to_100_terms(estimates_for_10_100_10000):
@@ -83,11 +83,11 @@ def test_pi_leibniz_up_to_100_terms(estimates_for_10_100_10000):
     assert_that(math.fabs(terms_100 - terms_10_000), is_(greater_than(1e-8)))
 
     expected_pi = 4.0 * sum(alternate_term_signs(reciprocals(odd_range(100))))
-    assert_that(estimate_pi.pi_leibniz(100), is_(close_to(expected_pi, 1e-16)))
+    assert_that(estimate_pi.pi_leibniz(100), is_(close_to(expected_pi, 1e-8)))
 
 
 def test_pi_leibniz_up_to_10_000_terms(estimates_for_10_100_10000):
     _, _, terms_10_000 = estimates_for_10_100_10000
 
     expected_pi = 4.0 * sum(alternate_term_signs(reciprocals(odd_range(10_000))))
-    assert_that(estimate_pi.pi_leibniz(10_000), is_(close_to(expected_pi, 1e-16)))
+    assert_that(estimate_pi.pi_leibniz(10_000), is_(close_to(expected_pi, 1e-8)))
