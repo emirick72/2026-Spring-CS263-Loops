@@ -38,7 +38,7 @@ def abs_error_from_known(estimate: float, known: float = math.pi) -> float:
         |estimate - known|
     """
 
-    return None
+    return abs(estimate - known)
 
 
 def pi_leibniz(num_terms: int) -> float:
@@ -52,7 +52,18 @@ def pi_leibniz(num_terms: int) -> float:
         approximate value for pi.
     """
 
-    return None
+    if num_terms <= 0:
+        return 0.0
+    
+    pi_estimate = 0.0
+    for i in range(num_terms):
+        term = 4.0 / (2 * i + 1)
+        if i % 2 == 1:
+            pi_estimate -= term
+        else:
+            pi_estimate += term
+
+    return pi_estimate
 
 
 def main():
